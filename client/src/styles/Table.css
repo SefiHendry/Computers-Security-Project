@@ -1,0 +1,141 @@
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    table-layout: fixed;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    word-wrap: break-word;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #000000;
+}
+
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #000000;
+}
+
+.btn {
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-add-patient {
+    background-color: #009879;
+    margin-top: 18px;
+    padding: 0.6rem;
+}
+
+.btn-add-patient:hover {
+    opacity: 0.8;
+    font-size: 20px;
+    transition: 0.5s ease-in-out;
+}
+
+.btn-edit {
+    background-color: rgba(0, 0, 198, 0.7);
+}
+
+.btn-delete {
+    background-color: #f44336;
+}
+
+.add-patient-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-patient-link {
+    border: 1px solid #327f87;
+    border-radius: 27px;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.add-patient-link:hover {
+    transition: 0.4s ease-in-out;
+    font-size: 23px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .styled-table thead {
+        display: none;
+    }
+
+    .styled-table,
+    .styled-table tbody,
+    .styled-table tr,
+    .styled-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .styled-table tr {
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: space-around;
+    }
+
+    .styled-table td,
+    .styled-table tr,
+    .styled-table tbody {
+        text-align: center;
+        /* padding-right: 80%; */
+        position: relative;
+    }
+
+    .styled-table td {
+        width: 90%;
+        text-align: right;
+        border: 1.3px solid #36868f;
+        margin-bottom: 0.2rem;
+    }
+
+    .styled-table td::before {
+        content: attr(table-data);
+        position: absolute;
+        left: 10px;
+        /* width: 50%; */
+        /* padding-left: 15px; */
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 360px) {
+        .styled-table td {
+            margin-left: 0;
+        }
+
+        .styled-table td {
+            width: 85%;
+        }
+    }
+}
