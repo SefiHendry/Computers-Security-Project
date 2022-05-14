@@ -4,12 +4,10 @@ const jwt = require("jsonwebtoken");
 const passwordConfig = require("../config");
 
 
-router.get("/getClients/:firstName?", async (req, res) => {
+router.post("/getClients", async (req, res) => {
   try {
-    let {firstName} = req.params;
-    firstName = firstName ? firstName : "";
-    console.log(firstName);
-    db.query("SELECT * FROM clients WHERE firstName LIKE (?)", [`%${firstName}%`] , (err, result) => {
+    const firstName = req.body ? req.body.firstName : "";
+    db.query(`SELECT * FROM clients WHERE firstName LIKE "%${firstName}%"` , (err, result) => {
         if (err) {
             return res.status(400).send("An error occured while fetching data from database");
         }
