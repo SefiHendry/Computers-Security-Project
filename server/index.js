@@ -26,7 +26,27 @@ app.use(express.urlencoded({ extended: true }));
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
+
+app.post("/login", Login);
+app.post("/register", Register);
+app.post("/forgotpass", Forgotpass);
+app.post("/resetpass", Resetpass);
+
+app.use(verifyToken);
 app.use("/clients", Clients)
+app.get("/", (req, res) => {
+  res.send("Server is up and running");
+});
+
+app.get("/passwordRequirements", (req, res) => {
+  res.send(require("./config")["password requirements"]);
+});
+
+app.get("/authentication_status", verifyToken, (req, res) => {
+  res.status(200).send();
+});
+
+app.post("/changePassword", Changepass);
 
 
 db = mysql.createConnection({
@@ -47,25 +67,3 @@ TLSserver.listen(Port, function () {
   console.log(`TLS Server is running on port ${Port}`);
 });
 
-// app.listen(Port, function () {
-//     console.log(`Server is running on port ${Port}`);
-// });
-
-app.get("/", (req, res) => {
-  res.send("Server is up and running");
-});
-
-app.get("/passwordRequirements", (req, res) => {
-  res.send(require("./config")["password requirements"]);
-});
-
-app.get("/authentication_status", verifyToken, (req, res) => {
-  res.status(200).send();
-});
-
-app.post("/login", Login);
-app.post("/register", Register);
-app.post("/changePassword", Changepass);
-app.post("/forgotpass", Forgotpass);
-app.post("/resetpass", Resetpass);
-//app.get("/getClients", getClients)
