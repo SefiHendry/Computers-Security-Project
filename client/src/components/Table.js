@@ -10,9 +10,9 @@ function Table() {
   //for example gender, procedure etc.
   const [clientsData, setClientsData] = useState([]);
   const [search, setSearch] = useState("");
-const headers = {
-  "x-access-token": localStorage.getItem("token"),
-};
+  const headers = {
+    "x-access-token": localStorage.getItem("token"),
+  };
 
   const history = useHistory();
 
@@ -21,19 +21,18 @@ const headers = {
     await getClients();
   }, []);
 
-
   const getClients = async () => {
-    const response = await axios.get(
-      "https://localhost:3005/clients/getClients/" + search,
+    const response = await axios.post(
+      "https://localhost:3005/clients/getClients/",
+      { firstName: search },
       { headers: headers }
     );
     if (response.status === 200) {
       setClientsData(response.data);
     } else {
-      console.log("Unable to get client/s")
+      console.log("Unable to get client/s");
     }
   };
-
 
   return (
     <>
@@ -61,7 +60,13 @@ const headers = {
             Search
           </button>
 
-          <TextField onChange={(e) => setSearch(e.target.value)} style={{sx: 2}} id="outlined-basic" variant="outlined" size="small" />
+          <TextField
+            onChange={(e) => setSearch(e.target.value)}
+            style={{ sx: 2 }}
+            id="outlined-basic"
+            variant="outlined"
+            size="small"
+          />
         </div>
       </div>
 
