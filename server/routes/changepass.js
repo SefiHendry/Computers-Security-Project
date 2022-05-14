@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const changePasswordValidation = require('../validate_password.js');
 const passwordConfig = require('../config');
 
-router.post("/changePassword", changePasswordValidation, verifyToken, async (req, res) => {
+router.post("/changePassword", changePasswordValidation, async (req, res) => {
     const { currentPassword, newPassword } = req.body;
     jwt.verify(req.headers["x-access-token"], config.TOKEN_KEY, (error, authData) => {
         if (error) {

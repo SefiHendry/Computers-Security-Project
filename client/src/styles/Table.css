@@ -47,7 +47,6 @@
 
 .btn-add-patient {
     background-color: #009879;
-    margin-top: 18px;
     padding: 0.6rem;
 }
 
@@ -55,6 +54,11 @@
     opacity: 0.8;
     font-size: 20px;
     transition: 0.5s ease-in-out;
+}
+
+.search-table{
+    display: flex;
+    align-items: center;
 }
 
 .btn-edit {
@@ -68,6 +72,14 @@
 .add-patient-btn-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 8px;
+}
+
+.table-options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .add-patient-link {
