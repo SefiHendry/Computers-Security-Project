@@ -31,15 +31,14 @@ app.post("/login", Login);
 app.post("/register", Register);
 app.post("/forgotpass", Forgotpass);
 app.post("/resetpass", Resetpass);
+app.get("/passwordRequirements", (req, res) => {
+  res.send(require("./config")["password requirements"]);
+});
 
 app.use(verifyToken);
 app.use("/clients", Clients)
 app.get("/", (req, res) => {
   res.send("Server is up and running");
-});
-
-app.get("/passwordRequirements", (req, res) => {
-  res.send(require("./config")["password requirements"]);
 });
 
 app.get("/authentication_status", verifyToken, (req, res) => {
