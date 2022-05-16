@@ -1,4 +1,4 @@
-const nodeoutlook = require("nodejs-nodemailer-outlook");
+var nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 
 var fs = require("fs");
@@ -16,16 +16,19 @@ const sendResetPass = (email, firstName, lastName, link, res) => {
   html = html.replace("@LastName", lastName);
   html = html.replace("@Link", link);
 
-  nodeoutlook.sendEmail({
+  const transporter = nodemailer.createTransport("SMTP", {
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_ADDRESS,
       pass: process.env.EMAIL_PASSWORD,
     },
-    from: process.env.EMAIL,
-    to: email,
-    subject: "Password reset",
-    html: html,
-    replyTo: process.env.EMAIL,
+  });
+
+  const mailOptions = {
+    from: "projecthit2022@gmail.com", // sender address
+    to: email, // list of receivers
+    subject: "test mail", // Subject line
+    html: html, // plain text body
     attachments: [
       {
         filename: "GIF_password.gif",
@@ -58,9 +61,11 @@ const sendResetPass = (email, firstName, lastName, link, res) => {
         cid: "facebook2x@kreata.ee",
       },
     ],
+  };
 
-    onError: (error) => console.log(error),
-    onSuccess: (success) => console.log(success.messageId),
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) console.log(err);
+    else console.log(info);
   });
 };
 
