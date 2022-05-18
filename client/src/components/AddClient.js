@@ -20,23 +20,32 @@ const server = 'https://localhost:3005';
 export default function AddClient() {
     const history = useHistory();
     const {enqueueSnackbar} = useSnackbar();
+    const headers = {
+      "x-access-token": localStorage.getItem("token"),
+    };
     
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        Axios.post(server + "/clients/addClient", {
+        Axios.post(
+          server + "/clients/addClient",
+          {
             firstName: data.get("firstName"),
             lastName: data.get("lastName"),
             product: data.get("product"),
-        })
-            .then((response) => {
-                enqueueSnackbar(response.data, {variant: "success"});
-                history.push("/Home");
-            })
-            .catch((error) => {
-                const massage = error.response ? error.response.data : "Network Error";
-                enqueueSnackbar(massage, {variant: "error"});
-            });
+          },
+          { headers: headers }
+        )
+          .then((response) => {
+            enqueueSnackbar(response.data, { variant: "success" });
+            history.push("/Home");
+          })
+          .catch((error) => {
+            const massage = error.response
+              ? error.response.data
+              : "Network Error";
+            enqueueSnackbar(massage, { variant: "error" });
+          });
     };
 
 
