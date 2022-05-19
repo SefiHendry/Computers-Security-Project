@@ -59,10 +59,10 @@ export default function Nav() {
     },
 
     {
-      title: "Dashboard",
+      title: "Home",
       function: () => {
         setFlag(!flag);
-        history.push("/dashboard");
+        history.push("/Home");
       },
       authenticationRequired: true,
     },
