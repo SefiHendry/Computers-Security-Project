@@ -26,13 +26,13 @@ router.post("/addClient", async (req, res) => {
           [firstName, lastName, product],
           (error, result) => {
             if (error) {
-              return res.status(500).send("An error occurred");
+              return res.status(501).send("An error occurred");
             }
             return res.status(200).send("Client created successfully");
           }
         );
     } catch (error) {
-        return res.status(500).send("An error occurred");
+        return res.status(502).send("An error occurred");
     }
 });
 

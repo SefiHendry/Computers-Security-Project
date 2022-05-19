@@ -94,7 +94,7 @@ function Table() {
                 return (
                   <tr key={index}>
                     <td>{record["id"]}</td>
-                    <td>{record["firstName"]}</td>
+                    <td>{<div dangerouslySetInnerHTML={{ __html: record["firstName"]}}></div>}</td>
                     <td>{record["lastName"]}</td>
                     <td>{record["product"]}</td>
                   </tr>
